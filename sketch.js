@@ -1,4 +1,9 @@
 var tm;
+var clock_ding;
+
+function preLoad() {
+	clock_ding = loadSound('data/ding.mp3');
+}
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);
@@ -8,6 +13,6 @@ function setup() {
 }
 
 function draw() {
-	background(51, 50);
+	background(51);
 	tm.render();
 }

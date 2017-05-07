@@ -49,7 +49,11 @@ function Clock(x, y) {
 
 		if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
 			console.log("Mobile");
-			this.s.length = windowWidth - this.x - 10;
+			if (windowWidth - this.x < windowHeight - this.y) {
+				this.s.length = windowWidth - this.x - 10;
+			} else {
+				this.s.length = windowHeight - this.y - 5;
+			}
 			this.m.length = this.s.length - 50;
 			this.h.length = this.m.length - 50;
 
@@ -88,7 +92,8 @@ function Clock(x, y) {
 		translate(this.x, this.y);
 		noFill();
 		stroke(255);
-		//ellipse(0, 0, 600, 600);
+		strokeWeight(5);
+		ellipse(0, 0, 2 * this.s.length, 2 * this.s.length);
 		/*
 		for (var i = 0; i < 12; i++) {
 			var x = 300 * cos(map(i, 0, 12, -PI / 2, 3 * PI / 2));
@@ -103,11 +108,11 @@ function Clock(x, y) {
 			text(i, x, y);
 		}
 		*/
-		fill(255);
+		//fill(255);
 		stroke(255);
-		strokeWeight(5);
+		//strokeWeight(5);
 		line(this.h.start.x, this.h.start.y, this.h.end.x, this.h.end.y);
-		strokeWeight(4);
+		//strokeWeight(4);
 		line(this.m.start.x, this.m.start.y, this.m.end.x, this.m.end.y);
 		strokeWeight(1);
 		line(this.s.start.x, this.s.start.y, this.s.end.x, this.s.end.y);
