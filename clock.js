@@ -112,10 +112,13 @@ function Clock(x, y) {
 		stroke(255);
 		//strokeWeight(5);
 		line(this.h.start.x, this.h.start.y, this.h.end.x, this.h.end.y);
+		//line(this.h.start.x, this.h.start.y, -50*cos(this.h.angle), -50*sin(this.h.angle));
 		//strokeWeight(4);
 		line(this.m.start.x, this.m.start.y, this.m.end.x, this.m.end.y);
+		//line(this.m.start.x, this.m.start.y, -50*cos(this.m.angle), -50*sin(this.m.angle));
 		strokeWeight(1);
 		line(this.s.start.x, this.s.start.y, this.s.end.x, this.s.end.y);
+		line(this.s.start.x, this.s.start.y, -50*cos(this.s.angle), -50*sin(this.s.angle));
 		pop();
 	}
 }
