@@ -54,10 +54,9 @@ function Clock(x, y) {
 			} else {
 				this.s.length = windowHeight - this.y - 5;
 			}
-			this.m.length = this.s.length - 50;
-			this.h.length = this.m.length - 50;
-
 		}
+		this.m.length = this.s.length * 90 / 100;
+		this.h.length = this.m.length * 60 / 100;
 
 		this.h.value = hour();
 		this.m.value = minute();
@@ -92,7 +91,7 @@ function Clock(x, y) {
 		translate(this.x, this.y);
 		noFill();
 		stroke(255);
-		strokeWeight(5);
+		strokeWeight(7);
 		ellipse(0, 0, 2 * this.s.length, 2 * this.s.length);
 		/*
 		for (var i = 0; i < 12; i++) {
@@ -116,9 +115,9 @@ function Clock(x, y) {
 		//strokeWeight(4);
 		line(this.m.start.x, this.m.start.y, this.m.end.x, this.m.end.y);
 		//line(this.m.start.x, this.m.start.y, -50*cos(this.m.angle), -50*sin(this.m.angle));
-		strokeWeight(1);
+		strokeWeight(3);
 		line(this.s.start.x, this.s.start.y, this.s.end.x, this.s.end.y);
-		line(this.s.start.x, this.s.start.y, -50*cos(this.s.angle), -50*sin(this.s.angle));
+		line(this.s.start.x, this.s.start.y, -50 * cos(this.s.angle), -50 * sin(this.s.angle));
 		pop();
 	}
 }
