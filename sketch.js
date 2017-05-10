@@ -1,5 +1,13 @@
+var startX;
+var startY;
 var tm = [];
 var clock_ding;
+var bgcolor = {
+	r: 51,
+	g: 51,
+	b: 51
+};
+var cb;
 
 function preLoad() {
 	clock_ding = loadSound('data/ding.mp3');
@@ -7,18 +15,21 @@ function preLoad() {
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);
-	textSize(100);
-	text("Made by Mouli", 0 , height/2);
-	tm[0] = new Clock(width/2, height/2);
+	//cb = new CheckBox();
+	tm.push(new Clock(width / 2, height / 2));
 }
 
 function draw() {
-	background(51);
-	for(i=0; i<tm.length; i++) {
+	background(bgcolor.r, bgcolor.g, bgcolor.b);
+	for (i = 0; i < tm.length; i++) {
 		tm[i].render();
 	}
 }
 
-function mousePressed() {
+function mouseDragged() {
 	//tm.push(new Clock(mouseX, mouseY));
+	bgcolor.r = map(mouseX, 0, width, 0 ,255);
+	bgcolor.b = map(mouseY, 0, height, 0 ,255);
+	
+	
 }

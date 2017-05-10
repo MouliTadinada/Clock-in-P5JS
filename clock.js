@@ -41,7 +41,13 @@ function Clock(x, y) {
 			y: 0
 		}
 	};
-
+	if (windowWidth - this.x < windowHeight - this.y) {
+		this.s.length = windowWidth - this.x - 10;
+	} else {
+		this.s.length = windowHeight - this.y - 5;
+	}
+	this.m.length = this.s.length * 90 / 100;
+	this.h.length = this.m.length * 60 / 100;
 
 
 
@@ -49,14 +55,8 @@ function Clock(x, y) {
 
 		if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
 			console.log("Mobile");
-			if (windowWidth - this.x < windowHeight - this.y) {
-				this.s.length = windowWidth - this.x - 10;
-			} else {
-				this.s.length = windowHeight - this.y - 5;
-			}
 		}
-		this.m.length = this.s.length * 90 / 100;
-		this.h.length = this.m.length * 60 / 100;
+
 
 		this.h.value = hour();
 		this.m.value = minute();
@@ -92,32 +92,36 @@ function Clock(x, y) {
 		noFill();
 		stroke(255);
 		strokeWeight(7);
+		
+		/*arc(0, 0, 2 * this.s.length, 2 * this.s.length, -PI / 2, this.s.angle);
+		arc(0, 0, 2 * this.m.length, 2 * this.m.length, -PI / 2, this.m.angle);
+		arc(0, 0, 2 * this.h.length, 2 * this.h.length, -PI / 2, this.h.angle);*/
+		
 		ellipse(0, 0, 2 * this.s.length, 2 * this.s.length);
-		/*
-		for (var i = 0; i < 12; i++) {
-			var x = 300 * cos(map(i, 0, 12, -PI / 2, 3 * PI / 2));
-			var y = 300 * sin(map(i, 0, 12, -PI / 2, 3 * PI / 2));
+		
+		/*ellipse(0, 0, 2 * this.m.length, 2 * this.m.length);
+		ellipse(0, 0, 2 * this.h.length, 2 * this.h.length);*/
+
+		/*for (var i = 0; i < 12; i++) {
+			var x = this.s.length * cos(map(i, 0, 12, -PI / 2, 3 * PI / 2));
+			var y = this.s.length * sin(map(i, 0, 12, -PI / 2, 3 * PI / 2));
 			text(".", x, y);
 		}
-		*/
-		/*
+		
+		textSize(1);
 		for (var i = 0; i < 60; i++) {
-			var x = 140 * cos(map(i, 0, 60, -PI / 2, 3 * PI / 2));
-			var y = 140 * sin(map(i, 0, 60, -PI / 2, 3 * PI / 2));
-			text(i, x, y);
-		}
-		*/
-		//fill(255);
+			var x = this.m.length * cos(map(i, 0, 60, -PI / 2, 3 * PI / 2));
+			var y = this.m.length * sin(map(i, 0, 60, -PI / 2, 3 * PI / 2));
+			text(".", x, y);
+		}*/
+
+		fill(255);
 		stroke(255);
-		//strokeWeight(5);
 		line(this.h.start.x, this.h.start.y, this.h.end.x, this.h.end.y);
-		//line(this.h.start.x, this.h.start.y, -50*cos(this.h.angle), -50*sin(this.h.angle));
-		//strokeWeight(4);
 		line(this.m.start.x, this.m.start.y, this.m.end.x, this.m.end.y);
-		//line(this.m.start.x, this.m.start.y, -50*cos(this.m.angle), -50*sin(this.m.angle));
 		strokeWeight(3);
 		line(this.s.start.x, this.s.start.y, this.s.end.x, this.s.end.y);
-		line(this.s.start.x, this.s.start.y, -50 * cos(this.s.angle), -50 * sin(this.s.angle));
+		line(this.s.start.x, this.s.start.y, -this.s.length * 0.25 * cos(this.s.angle), -this.s.length * 0.25 * sin(this.s.angle));
 		pop();
 	}
 }
