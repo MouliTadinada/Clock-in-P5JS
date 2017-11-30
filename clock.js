@@ -62,6 +62,9 @@ function Clock(x, y) {
 		this.h.value = hour();
 		this.m.value = minute();
 		this.s.value = second();
+        if(this.h.value == 0) {
+            this.h.value = 12;
+        }
 
 		//	FINDING THE ANGLES
 		//	HOUR ANGLE
